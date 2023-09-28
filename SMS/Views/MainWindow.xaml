@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SMS"
         xmlns:viewModel="clr-namespace:SMS.ViewModels"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="SMS" 
         Height="600" Width="920">
@@ -39,24 +40,127 @@
             <StackPanel Grid.Row="1"
                         Background="{StaticResource BackgroundWhite}">
 
-                <RadioButton Content="Home"
-                             Height="50"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
-                             Command="{Binding HomeViewCommand}"/>
+                             Command="{Binding HomeViewCommand}">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="HomeSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Home" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
 
-                <RadioButton Content="Discovery"
-                             Height="50"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding DiscoveryViewCommand}"/>
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DiscoveryViewCommand}">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="AddressCardSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Students" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
 
-                <RadioButton Content="Featured"
-                             Height="50"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding }">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="AddressCardSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Staff" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding }">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="BookReaderSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Assessments" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding }">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="BookReaderSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Examinations" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding }">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="CalendarCheckSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Time Table" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding }">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconFontAwesome 
+                                Kind="BookOpenSolid" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Library" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                
+                <RadioButton Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding }">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconBootstrapIcons 
+                                Kind="GearFill" 
+                                Margin="10 0 10 0"
+                                VerticalAlignment="Center"/>
+                            <TextBlock Text="Settings" />
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                
             </StackPanel>
+            
+            <Grid Grid.Row="1"
+                  VerticalAlignment="Bottom">
+                <Border Height="40" 
+                        CornerRadius="7"
+                        Margin="5"
+                        Background="{StaticResource MenuHighlightBrush}">
+                    <TextBlock Text="Designed by Pheeda Technologies"
+                               FontSize="10"
+                               Foreground="{StaticResource PrimaryColor}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Border>
+            </Grid>
+            
 
             <Grid Grid.Column="1"
                   Background="{StaticResource BackgroundWhite}" >
@@ -74,6 +178,13 @@
 
                 <StackPanel Grid.Column="1"
                     Orientation="Horizontal">
+                    
+                    <iconPacks:PackIconFontAwesome Kind="BellSolid" 
+                                                   Foreground="Gray"
+                                                   Height="25"
+                                                   Width="25"
+                                                   Margin="0 0 25 0"
+                                                   VerticalAlignment="Center"/>
                     <Border Height="50"
                             Width="50" 
                             CornerRadius="50">

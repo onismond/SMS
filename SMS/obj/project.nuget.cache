@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nNS4ti4eE8lb0J7CPAUlxNiN0Jd2uwRNhinpSQDmi6rXSyjK+zFb8Wz9RFCMjKwjyRaAR7ge38qMbl8AnziLFw==",
+  "dgSpecHash": "t6YYaXiShbLetQCCWWZvnK1N62Tz9DODQPTRAbvApiTO3UeGGL0TIDaSstQ/3n8hra4mV2fS2cJjjxlKlBI4Xg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Latitude E5470\\source\\repos\\SMS\\SMS\\SMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Latitude E5470\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Latitude E5470\\.nuget\\packages\\mahapps.metro.iconpacks\\4.11.0\\mahapps.metro.iconpacks.4.11.0.nupkg.sha512",
     "C:\\Users\\Latitude E5470\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.11\\microsoft.data.sqlite.core.7.0.11.nupkg.sha512",
     "C:\\Users\\Latitude E5470\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\Latitude E5470\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",

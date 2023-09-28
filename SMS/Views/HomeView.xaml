@@ -7,63 +7,24 @@
              xmlns:local="clr-namespace:SMS.Views" 
              d:DataContext="{d:DesignInstance Type=viewModel:HomeViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="460" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="1020">
 
     <StackPanel>
-        <TextBlock Text="Discover"
-                   Foreground="White"
-                   FontSize="28"
-                   HorizontalAlignment="Left"
-                   Margin="0, 0, 0, 20"/>
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="0, 0, 0, 10">
-            <Border Width="400" Height="200">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
-                        <GradientStop Color="#3aa0ff" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0, 0, 400, 200"/>
-                </Border.Clip>
-
-                <Grid>
-                    <StackPanel>
-                        <TextBlock Text="World leader&#x0a;in global finance"
-                                   Foreground="White"
-                                   FontSize="28"
-                                   Margin="20, 10, 10, 0"/>
-
-                        <TextBlock Text="Get started today!"
-                                   Foreground="White"
-                                   FontSize="18"
-                                   Margin="20, 10, 10, 0"/>
-                    </StackPanel>
-
-                    <Image Width="177"
-                           Height="143"
-                           Source="/Views/Drawable/img.png"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"/>
-                </Grid>
-            </Border>
-
-            <Border Width="200"
-                    Height="200"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Width="250"
+                    Height="130"
                     CornerRadius="7"
-                    Margin="45, 0, 0, 0">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#ffc554" Offset="0.0"/>
-                        <GradientStop Color="#ffb73a" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+                    Margin="0, 0, 0, 0"
+                    HorizontalAlignment="Left"
+                    Background="{StaticResource BackgroundWhite}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -78,11 +39,75 @@
                                Width="150"
                                Height="30" />
                 </Grid>
-                
-
-                
             </Border>
-        </StackPanel>
+            
+            <Border Grid.Column="1" Width="250"
+                    Height="130"
+                    CornerRadius="7"
+                    Margin="0, 0, 0, 0"
+                    HorizontalAlignment="Left"
+                    Background="{StaticResource BackgroundWhite}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button
+                    Width="100"
+                    Height="23"
+                    Content="To Discovery"
+                    Command="{Binding DiscoveryCommand}"/>
+                    <TextBox Grid.Row="1"
+                               Width="150"
+                               Height="30" />
+                </Grid>
+            </Border>
+            
+            <Border Grid.Column="2" Width="250"
+                    Height="130"
+                    CornerRadius="7"
+                    Margin="0, 0, 0, 0"
+                    HorizontalAlignment="Left"
+                    Background="{StaticResource BackgroundWhite}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button
+                    Width="100"
+                    Height="23"
+                    Content="To Discovery"
+                    Command="{Binding DiscoveryCommand}"/>
+                    <TextBox Grid.Row="1"
+                               Width="150"
+                               Height="30" />
+                </Grid>
+            </Border>
+            
+            <Border Grid.Column="3" Width="250"
+                    Height="130"
+                    CornerRadius="7"
+                    Margin="0, 0, 0, 0"
+                    HorizontalAlignment="Left"
+                    Background="{StaticResource BackgroundWhite}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button
+                    Width="100"
+                    Height="23"
+                    Content="To Discovery"
+                    Command="{Binding DiscoveryCommand}"/>
+                    <TextBox Grid.Row="1"
+                               Width="150"
+                               Height="30" />
+                </Grid>
+            </Border>
+            
+        </Grid>
 
         <StackPanel>
 
