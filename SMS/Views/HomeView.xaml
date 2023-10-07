@@ -5,144 +5,232 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel="clr-namespace:SMS.ViewModels"
              xmlns:local="clr-namespace:SMS.Views" 
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              d:DataContext="{d:DesignInstance Type=viewModel:HomeViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1020">
 
-    <StackPanel>
+    <Grid MinHeight="720">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Border CornerRadius="7"
+                Margin="10"
+                Background="{StaticResource BackgroundWhite}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Height="70"
+                        Width="70" 
+                        CornerRadius="50"
+                        Background="{StaticResource MenuHighlightBrush}">
+                    <Border Height="60"
+                        Width="60" 
+                        CornerRadius="50">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" 
+                                    ImageSource="/Views/Drawable/avatar.jpg"/>
+                    </Border.Background>
+                </Border>
+                </Border>
+                
+                <StackPanel Grid.Column="1" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+
+                    <TextBlock Text="12,000"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 3"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryColor}"/>
+
+                    <TextBlock Text="Total Students"
+                               HorizontalAlignment="Center"
+                               Margin="0 3 0 0"
+                               FontSize="15"
+                               FontWeight="DemiBold"
+                               Foreground="Gray"/>
+                </StackPanel>
+            </Grid>
+        </Border>
             
-            <Border Width="250"
-                    Height="130"
-                    CornerRadius="7"
-                    Margin="0, 0, 0, 0"
-                    HorizontalAlignment="Left"
-                    Background="{StaticResource BackgroundWhite}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button
-                    Width="100"
-                    Height="23"
-                    Content="To Discovery"
-                    Command="{Binding DiscoveryCommand}"/>
-                    <TextBox Grid.Row="1"
-                               Width="150"
-                               Height="30" />
+        <Border Grid.Column="1"
+                CornerRadius="7"
+                Margin="10"
+                Background="{StaticResource BackgroundWhite}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Height="70"
+                        Width="70" 
+                        CornerRadius="50"
+                        Background="{StaticResource MenuHighlightBrush}">
+                    <Border Height="60"
+                        Width="60" 
+                        CornerRadius="50">
+                        <Border.Background>
+                            <ImageBrush Stretch="Fill" 
+                                    ImageSource="/Views/Drawable/avatar.jpg"/>
+                        </Border.Background>
+                    </Border>
+                </Border>
+
+                <StackPanel Grid.Column="1" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+
+                    <TextBlock Text="60"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 3"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryColor}"/>
+
+                    <TextBlock Text="Available Staff"
+                               HorizontalAlignment="Center"
+                               Margin="0 3 0 0"
+                               FontSize="15"
+                               FontWeight="DemiBold"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+            
+        <Border Grid.Column="2"
+                CornerRadius="7"
+                Margin="10, 10, 20, 10"
+                Background="{StaticResource BackgroundWhite}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Height="70"
+                        Width="70" 
+                        CornerRadius="50"
+                        Background="{StaticResource MenuHighlightBrush}">
+                    <Border Height="60"
+                        Width="60" 
+                        CornerRadius="50">
+                        <Border.Background>
+                            <ImageBrush Stretch="Fill" 
+                                    ImageSource="/Views/Drawable/avatar.jpg"/>
+                        </Border.Background>
+                    </Border>
+                </Border>
+
+                <StackPanel Grid.Column="1" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+
+                    <TextBlock Text="100"
+                               HorizontalAlignment="Center"
+                               Margin="0 0 0 3"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryColor}"/>
+
+                    <TextBlock Text="Active Workers"
+                               HorizontalAlignment="Center"
+                               Margin="0 3 0 0"
+                               FontSize="15"
+                               FontWeight="DemiBold"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+            
+        <Border Grid.Column="3" Grid.RowSpan="2"
+                CornerRadius="7"
+                Margin="0, 10, 10, 0"
+                Background="{StaticResource BackgroundWhite}">
+            
+            
+        </Border>
+
+        <Border Grid.Row="1" Grid.ColumnSpan="3"
+                CornerRadius="7"
+                Margin="10 10 20 0"
+                Background="{StaticResource BackgroundWhite}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <lvc:CartesianChart
+                    Series="{Binding Line1Series}">
+                </lvc:CartesianChart>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <lvc:PieChart
+                        Series="{Binding Guage1}"
+                        InitialRotation="-90"
+                        MinValue="0"
+                        MaxValue="{Binding Guage1MaxValue}">
+                    </lvc:PieChart>
+                    
+                    <lvc:PieChart
+                        Grid.Column="1"
+                        Series="{Binding Guage2}"
+                        InitialRotation="-90"
+                        MaxValue="{Binding Guage2MaxValue}"
+                        MinValue="0">
+                    </lvc:PieChart>
+                    
+                    <lvc:PieChart
+                        Grid.Column="2"
+                        Series="{Binding Guage3}"
+                        InitialRotation="-90"
+                        MinValue="0"
+                        MaxValue="{Binding Guage3MaxValue}">
+                    </lvc:PieChart>
                 </Grid>
-            </Border>
-            
-            <Border Grid.Column="1" Width="250"
-                    Height="130"
-                    CornerRadius="7"
-                    Margin="0, 0, 0, 0"
-                    HorizontalAlignment="Left"
-                    Background="{StaticResource BackgroundWhite}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button
-                    Width="100"
-                    Height="23"
-                    Content="To Discovery"
-                    Command="{Binding DiscoveryCommand}"/>
-                    <TextBox Grid.Row="1"
-                               Width="150"
-                               Height="30" />
-                </Grid>
-            </Border>
-            
-            <Border Grid.Column="2" Width="250"
-                    Height="130"
-                    CornerRadius="7"
-                    Margin="0, 0, 0, 0"
-                    HorizontalAlignment="Left"
-                    Background="{StaticResource BackgroundWhite}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button
-                    Width="100"
-                    Height="23"
-                    Content="To Discovery"
-                    Command="{Binding DiscoveryCommand}"/>
-                    <TextBox Grid.Row="1"
-                               Width="150"
-                               Height="30" />
-                </Grid>
-            </Border>
-            
-            <Border Grid.Column="3" Width="250"
-                    Height="130"
-                    CornerRadius="7"
-                    Margin="0, 0, 0, 0"
-                    HorizontalAlignment="Left"
-                    Background="{StaticResource BackgroundWhite}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button
-                    Width="100"
-                    Height="23"
-                    Content="To Discovery"
-                    Command="{Binding DiscoveryCommand}"/>
-                    <TextBox Grid.Row="1"
-                               Width="150"
-                               Height="30" />
-                </Grid>
-            </Border>
-            
-        </Grid>
+            </Grid>
 
-        <StackPanel>
+        </Border>
 
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="Margin" Value="15. 0, 0, 0"/>
-                </Style>
-            </StackPanel.Resources>
+        <Border Grid.Row="2"
+                CornerRadius="7"
+                Margin="10 20 10 0"
+                Background="{StaticResource BackgroundWhite}">
 
-            <TextBlock Text="Most watched"
-                   Foreground="White"
-                   FontSize="20"
-                   HorizontalAlignment="Left"
-                   Margin="0, 0, 0, 10"/>
+        </Border>
 
-            <StackPanel Orientation="Horizontal">
-                <Border Width="150"
-                        Height="150"
-                        Background="#844eff"
-                        CornerRadius="10"
-                        Margin="0"/>
-                <Border Width="150"
-                        Height="150"
-                        Background="#4e99ff"
-                        CornerRadius="10"/>
-                <Border Width="150"
-                        Height="150"
-                        Background="#4eff91"
-                        CornerRadius="10"/>
-                <Border Width="150"
-                        Height="150"
-                        Background="#ecff4e"
-                        CornerRadius="10"/>
+        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"
+                CornerRadius="7"
+                Margin="10 20 10 0"
+                Background="{StaticResource BackgroundWhite}">
 
-            </StackPanel>
-        </StackPanel>
-    </StackPanel>
+        </Border>
+
+        <Border Grid.Row="3" Grid.ColumnSpan="4"
+                CornerRadius="7"
+                Margin="10 20 10 0"
+                Background="{StaticResource BackgroundWhite}">
+
+        </Border>
+
+
+    </Grid>
+
 </UserControl>
