@@ -36,8 +36,8 @@
                         Width="70" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <Border Height="60"
-                        Width="60" 
+                    <Border Height="50"
+                        Width="50" 
                         CornerRadius="50">
                     <Border.Background>
                         <ImageBrush Stretch="Fill" 
@@ -80,8 +80,8 @@
                         Width="70" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <Border Height="60"
-                        Width="60" 
+                    <Border Height="50"
+                        Width="50" 
                         CornerRadius="50">
                         <Border.Background>
                             <ImageBrush Stretch="Fill" 
@@ -123,8 +123,8 @@
                         Width="70" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <Border Height="60"
-                        Width="60" 
+                    <Border Height="50"
+                        Width="50" 
                         CornerRadius="50">
                         <Border.Background>
                             <ImageBrush Stretch="Fill" 
@@ -157,7 +157,58 @@
                 CornerRadius="7"
                 Margin="0, 10, 10, 0"
                 Background="{StaticResource BackgroundWhite}">
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border Height="100"
+                        Width="100" 
+                        CornerRadius="50"
+                        Background="{StaticResource MenuHighlightBrush}"
+                        Margin="0 0 0 10">
+                    <Border Height="90"
+                        Width="90" 
+                        CornerRadius="50">
+                        <Border.Background>
+                            <ImageBrush Stretch="Fill" 
+                                    ImageSource="/Views/Drawable/avatar.jpg"/>
+                        </Border.Background>
+                    </Border>
+                </Border>
+
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Pheeda Alhassan"
+                               Margin="0 0 0 3"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource PrimaryColor}"/>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0 3 0 0">
+                        <TextBlock Text="Principal"/>
+                        <TextBlock Text="Active"
+                                   Margin="10 0 0 0"
+                                   Foreground="Green"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal" Margin="10 3 0 0">
+                        <Border Height="10" Width="10" CornerRadius="10"
+                                Background="{StaticResource PrimaryColor}"/>
+                        <TextBlock Text=" Total number of Classes: "/>
+                        <TextBlock Text="200"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
             
         </Border>
 
