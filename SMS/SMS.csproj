@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Theme\PrimaryButtonStyle.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc1.2" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
@@ -26,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Theme\PrimaryButtonStyle.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Drawable\avatar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

@@ -8,7 +8,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="SMS" 
-        Height="600" Width="920">
+        WindowState="Maximized">
     
     <!--<Window.DataContext>
         <viewModel:MainViewModel/>
@@ -153,7 +153,7 @@
                         CornerRadius="7"
                         Margin="5"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <TextBlock Text="Designed by Pheeda Technologies"
+                    <TextBlock Text="Designed by Moden Technologies"
                                FontSize="10"
                                Foreground="{StaticResource PrimaryColor}"
                                VerticalAlignment="Center"

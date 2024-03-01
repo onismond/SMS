@@ -12,6 +12,18 @@
     <Page Update="Theme\Colors.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Theme\NextButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Theme\PreviousButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Theme\PrimaryButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Update="Theme\PrimaryButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -10,6 +10,8 @@
                 <ResourceDictionary Source="Theme/Colors.xaml"/>
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/SearchBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/PreviousButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/NextButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

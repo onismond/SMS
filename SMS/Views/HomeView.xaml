@@ -5,283 +5,830 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel="clr-namespace:SMS.ViewModels"
              xmlns:local="clr-namespace:SMS.Views" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              d:DataContext="{d:DesignInstance Type=viewModel:HomeViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1020">
+             d:DesignHeight="2020" d:DesignWidth="1020">
+    
+    <UserControl.Resources>
+        <ControlTemplate x:Key="CalendarItemTemplate1" TargetType="{x:Type CalendarItem}">
+            <ControlTemplate.Resources>
+                <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                    <TextBlock Foreground="{StaticResource PrimaryColor}" FontFamily="Verdana" FontWeight="Medium" FontSize="6" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </ControlTemplate.Resources>
+            <Grid x:Name="PART_Root">
+                <Grid.Resources>
+                    <SolidColorBrush x:Key="DisabledColor" Color="#A5FFFFFF"/>
+                </Grid.Resources>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="PART_DisabledVisual" To="1" Storyboard.TargetProperty="Opacity"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1">
+                    <Border BorderBrush="#FFFFFFFF" BorderThickness="2" CornerRadius="1">
+                        <Grid>
+                            <Grid.Resources>
+                                <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
+                                    <Grid Cursor="Hand">
+                                            
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#FF73A9D8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0" Storyboard.TargetName="path" To=".5" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Rectangle Fill="#11E5EBF1" Opacity="1" Stretch="Fill"/>
+                                        <Grid>
+                                            <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="{StaticResource PrimaryColor}" HorizontalAlignment="Left" Height="10" Margin="18,-6,0,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
+                                        </Grid>
+                                    </Grid>
+                                </ControlTemplate>
+                                <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
+                                    <Grid Cursor="Hand">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" Storyboard.TargetName="path" To="#FF73A9D8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0" Storyboard.TargetName="path" To=".5" Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Rectangle Fill="#11E5EBF1" Opacity="1" Stretch="Fill"/>
+                                        <Grid>
+                                            <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="{StaticResource PrimaryColor}" HorizontalAlignment="Right" Height="10" Margin="0,-6,18,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
+                                        </Grid>
+                                    </Grid>
+                                </ControlTemplate>
+                                <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
+                                    <Grid Cursor="Hand">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" Storyboard.TargetName="buttonContent" To="#FF73A9D8" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Disabled">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Duration="0" Storyboard.TargetName="buttonContent" To=".5" Storyboard.TargetProperty="Opacity"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <ContentPresenter x:Name="buttonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" TextElement.FontSize="6" TextElement.Foreground="{StaticResource PrimaryColor}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,4,1,9" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="PART_PreviousButton" Grid.Column="0" Focusable="False" HorizontalAlignment="Left" Height="20" Grid.Row="0" Template="{StaticResource PreviousButtonTemplate}" Width="28"/>
+                            <Button x:Name="PART_HeaderButton" Grid.Column="1" Focusable="False" FontWeight="Bold" FontSize="10.5" HorizontalAlignment="Center" Grid.Row="0" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"/>
+                            <Button x:Name="PART_NextButton" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="20" Grid.Row="0" Template="{StaticResource NextButtonTemplate}" Width="28"/>
+                            <Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="1" Visibility="Visible">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                            <Grid x:Name="PART_YearView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-3,7,6" Grid.Row="1" Visibility="Hidden">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Border>
+                <Rectangle x:Name="PART_DisabledVisual" Fill="{StaticResource DisabledColor}" Opacity="0" RadiusX="2" RadiusY="2" Stroke="{StaticResource DisabledColor}" Stretch="Fill" StrokeThickness="1" Visibility="Collapsed"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" TargetName="PART_DisabledVisual" Value="Visible"/>
+                </Trigger>
+                <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
+                    <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
+                    <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
+                    <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
+                    <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="CalendarStyle1" TargetType="{x:Type Calendar}">
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                            <CalendarItem Template="{DynamicResource CalendarItemTemplate1}" x:Name="PART_CalendarItem" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Style="{TemplateBinding CalendarItemStyle}"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CalendarCalendarButtonStyle1" TargetType="{x:Type CalendarButton}">
+            <Setter Property="Background" Value="#FFBADDE9"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarButton}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" To=".5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Background" To=".5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="SelectedBackground" To=".75" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ActiveStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Active"/>
+                                    <VisualState x:Name="Inactive">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FF777777" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CalendarButtonFocusStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="CalendarButtonFocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="CalendarButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CalendarButtonUnfocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="CalendarButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="SelectedBackground" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="Background" Fill="{TemplateBinding Background}" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FF333333" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,0,1,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="#FF45D6FA" Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Visibility" TargetName="CalendarButtonFocusVisual" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CalendarCalendarDayButtonStyle1" TargetType="{x:Type CalendarDayButton}">
+            <Setter Property="MinWidth" Value="5"/>
+            <Setter Property="MinHeight" Value="5"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarDayButton}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.1"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="HighlightBackground" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="HighlightBackground" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="HighlightBackground" To="0" Storyboard.TargetProperty="Opacity"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="NormalText" To=".35" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="SelectedBackground" To=".75" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CalendarButtonFocusStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="CalendarButtonFocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DayButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CalendarButtonUnfocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="DayButtonFocusVisual" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Collapsed</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ActiveStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Active"/>
+                                    <VisualState x:Name="Inactive">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FF777777" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DayStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="RegularDay"/>
+                                    <VisualState x:Name="Today">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="TodayBackground" To="1" Storyboard.TargetProperty="Opacity"/>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="#FFFFFFFF" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="BlackoutDayStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="NormalDay"/>
+                                    <VisualState x:Name="BlackoutDay">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Blackout" To=".2" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="TodayBackground" Fill="{StaticResource PrimaryColor}" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="SelectedBackground" Fill="{StaticResource MenuHighlightBrush}" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource PrimaryColor}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                            <Rectangle x:Name="HighlightBackground" Fill="{StaticResource PrimaryColor}" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="#FF333333" TextElement.FontSize="6" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="12,7,12,7" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
+                            <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="#FF45D6FA" Visibility="Collapsed"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+                  VerticalScrollBarVisibility="Auto">
+        <Grid MinHeight="720">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="170"/>
+                <RowDefinition Height="700"/>
+            </Grid.RowDefinitions>
 
-    <Grid MinHeight="720">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="200"/>
-            <RowDefinition/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <Border CornerRadius="7"
+            <Border CornerRadius="7"
                 Margin="10"
                 Background="{StaticResource BackgroundWhite}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Height="70"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Height="70"
                         Width="70" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <Border Height="50"
+                        <Border Height="50"
                         Width="50" 
                         CornerRadius="50">
-                    <Border.Background>
-                        <ImageBrush Stretch="Fill" 
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" 
                                     ImageSource="/Views/Drawable/avatar.jpg"/>
-                    </Border.Background>
-                </Border>
-                </Border>
-                
-                <StackPanel Grid.Column="1" 
+                            </Border.Background>
+                        </Border>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
 
-                    <TextBlock Text="12,000"
+                        <TextBlock Text="12,000"
                                HorizontalAlignment="Center"
                                Margin="0 0 0 3"
                                FontSize="22"
                                FontWeight="Bold"
                                Foreground="{StaticResource PrimaryColor}"/>
 
-                    <TextBlock Text="Total Students"
+                        <TextBlock Text="Total Students"
                                HorizontalAlignment="Center"
                                Margin="0 3 0 0"
                                FontSize="15"
                                FontWeight="DemiBold"
                                Foreground="Gray"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-            
-        <Border Grid.Column="1"
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1"
                 CornerRadius="7"
                 Margin="10"
                 Background="{StaticResource BackgroundWhite}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Height="70"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Height="70"
                         Width="70" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <Border Height="50"
+                        <Border Height="50"
                         Width="50" 
                         CornerRadius="50">
-                        <Border.Background>
-                            <ImageBrush Stretch="Fill" 
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" 
                                     ImageSource="/Views/Drawable/avatar.jpg"/>
-                        </Border.Background>
+                            </Border.Background>
+                        </Border>
                     </Border>
-                </Border>
 
-                <StackPanel Grid.Column="1" 
+                    <StackPanel Grid.Column="1" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
 
-                    <TextBlock Text="60"
+                        <TextBlock Text="60"
                                HorizontalAlignment="Center"
                                Margin="0 0 0 3"
                                FontSize="22"
                                FontWeight="Bold"
                                Foreground="{StaticResource PrimaryColor}"/>
 
-                    <TextBlock Text="Available Staff"
+                        <TextBlock Text="Available Staff"
                                HorizontalAlignment="Center"
                                Margin="0 3 0 0"
                                FontSize="15"
                                FontWeight="DemiBold"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-            
-        <Border Grid.Column="2"
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2"
                 CornerRadius="7"
                 Margin="10, 10, 20, 10"
                 Background="{StaticResource BackgroundWhite}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Height="70"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border Height="70"
                         Width="70" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}">
-                    <Border Height="50"
+                        <Border Height="50"
                         Width="50" 
                         CornerRadius="50">
-                        <Border.Background>
-                            <ImageBrush Stretch="Fill" 
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" 
                                     ImageSource="/Views/Drawable/avatar.jpg"/>
-                        </Border.Background>
+                            </Border.Background>
+                        </Border>
                     </Border>
-                </Border>
 
-                <StackPanel Grid.Column="1" 
+                    <StackPanel Grid.Column="1" 
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
 
-                    <TextBlock Text="100"
+                        <TextBlock Text="100"
                                HorizontalAlignment="Center"
                                Margin="0 0 0 3"
                                FontSize="22"
                                FontWeight="Bold"
                                Foreground="{StaticResource PrimaryColor}"/>
 
-                    <TextBlock Text="Active Workers"
+                        <TextBlock Text="Active Workers"
                                HorizontalAlignment="Center"
                                Margin="0 3 0 0"
                                FontSize="15"
                                FontWeight="DemiBold"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-            
-        <Border Grid.Column="3" Grid.RowSpan="2"
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="3" Grid.RowSpan="2"
                 CornerRadius="7"
                 Margin="0, 10, 10, 0"
                 Background="{StaticResource BackgroundWhite}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                <Border Height="100"
+                    <Border Height="100"
                         Width="100" 
                         CornerRadius="50"
                         Background="{StaticResource MenuHighlightBrush}"
                         Margin="0 0 0 10">
-                    <Border Height="90"
+                        <Border Height="90"
                         Width="90" 
                         CornerRadius="50">
-                        <Border.Background>
-                            <ImageBrush Stretch="Fill" 
+                            <Border.Background>
+                                <ImageBrush Stretch="Fill" 
                                     ImageSource="/Views/Drawable/avatar.jpg"/>
-                        </Border.Background>
+                            </Border.Background>
+                        </Border>
                     </Border>
-                </Border>
 
-                <StackPanel Grid.Column="1"
+                    <StackPanel Grid.Column="1"
                             VerticalAlignment="Center">
-                    <TextBlock Text="Pheeda Alhassan"
+                        <TextBlock Text="Pheeda Alhassan"
                                Margin="0 0 0 3"
                                FontSize="16"
                                FontWeight="SemiBold"
                                Foreground="{StaticResource PrimaryColor}"/>
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 Margin="0 3 0 0">
-                        <TextBlock Text="Principal"/>
-                        <TextBlock Text="Active"
+                            <TextBlock Text="Principal"/>
+                            <TextBlock Text="Active"
                                    Margin="10 0 0 0"
                                    Foreground="Green"/>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
 
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                    <StackPanel Orientation="Horizontal" Margin="10 3 0 0">
-                        <Border Height="10" Width="10" CornerRadius="10"
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" Margin="10 3 0 0">
+                            <Border Height="10" Width="10" CornerRadius="10"
                                 Background="{StaticResource PrimaryColor}"/>
-                        <TextBlock Text=" Total number of Classes: "/>
-                        <TextBlock Text="200"/>
+                            <TextBlock Text=" Total number of Classes: "/>
+                            <TextBlock Text="200"/>
+                        </StackPanel>
+
                     </StackPanel>
 
-                </StackPanel>
+                </Grid>
 
-            </Grid>
-            
-        </Border>
+            </Border>
 
-        <Border Grid.Row="1" Grid.ColumnSpan="3"
+            <Border Grid.Row="1" Grid.ColumnSpan="3"
                 CornerRadius="7"
                 Margin="10 10 20 0"
                 Background="{StaticResource BackgroundWhite}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <lvc:CartesianChart
-                    Series="{Binding Line1Series}">
-                </lvc:CartesianChart>
-
-                <Grid Grid.Column="1">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <lvc:PieChart
+                    <lvc:CartesianChart
+                    Series="{Binding Line1Series}">
+                    </lvc:CartesianChart>
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <lvc:PieChart
                         Series="{Binding Guage1}"
                         InitialRotation="-90"
                         MinValue="0"
                         MaxValue="{Binding Guage1MaxValue}">
-                    </lvc:PieChart>
-                    
-                    <lvc:PieChart
+                        </lvc:PieChart>
+
+                        <lvc:PieChart
                         Grid.Column="1"
                         Series="{Binding Guage2}"
                         InitialRotation="-90"
                         MaxValue="{Binding Guage2MaxValue}"
                         MinValue="0">
-                    </lvc:PieChart>
-                    
-                    <lvc:PieChart
+                        </lvc:PieChart>
+
+                        <lvc:PieChart
                         Grid.Column="2"
                         Series="{Binding Guage3}"
                         InitialRotation="-90"
                         MinValue="0"
                         MaxValue="{Binding Guage3MaxValue}">
-                    </lvc:PieChart>
+                        </lvc:PieChart>
+                    </Grid>
                 </Grid>
-            </Grid>
 
-        </Border>
+            </Border>
 
-        <Border Grid.Row="2"
+            <Border Grid.Row="2"
                 CornerRadius="7"
                 Margin="10 20 10 0"
                 Background="{StaticResource BackgroundWhite}">
 
-        </Border>
+                <lvc:PieChart Series="{Binding DoughnutSeries}" />
+            </Border>
 
-        <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"
+            <Border Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"
                 CornerRadius="7"
                 Margin="10 20 10 0"
                 Background="{StaticResource BackgroundWhite}">
 
-        </Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="35"/>
+                    </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="3" Grid.ColumnSpan="4"
+                    <Button Margin="5" Command="{Binding DiscoveryCommand}"
+                        Style="{StaticResource PreviousButtonTheme}">
+                        <Button.Content>
+                            <iconPacks:FontAwesome
+                            Kind="ChevronLeftSolid"/>
+                        </Button.Content>
+                    </Button>
+
+                    <Border Grid.Column="1" Margin="10" Background="AliceBlue">
+
+                        <ListView ItemsSource="{Binding TodayClasses}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Name: "/>
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text=" Location: " />
+                                        <TextBlock Text="{Binding Location}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Border>
+
+                    <Button Grid.Column="2" Margin="5" 
+                        Style="{StaticResource NextButtonTheme}">
+                        <Button.Content>
+                            <iconPacks:FontAwesome
+                            Kind="ChevronRightSolid"/>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="3" Grid.ColumnSpan="4"
                 CornerRadius="7"
-                Margin="10 20 10 0"
+                Margin="10 20 10 10"
                 Background="{StaticResource BackgroundWhite}">
 
-        </Border>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Viewbox Stretch="Uniform" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="10">
+                        <Calendar CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" CalendarButtonStyle="{DynamicResource CalendarCalendarButtonStyle1}" Style="{DynamicResource CalendarStyle1}" />
+                    </Viewbox>
+
+                    <Border Grid.Column="2" Grid.RowSpan="2"
+                            Margin="-10 50 1 50"
+                            Width="5" Height="auto" 
+                            HorizontalAlignment="Left"
+                            CornerRadius="4"
+                            Background="{StaticResource MenuHighlightBrush}"/>
+                    <Border Grid.Column="2" Grid.RowSpan="2" 
+                            Margin="10"
+                            CornerRadius="10"
+                            BorderThickness="5"
+                            BorderBrush="{StaticResource MenuHighlightBrush}">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.45*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="4*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Margin="20"
+                                    CornerRadius="10"
+                                    Background="{StaticResource MenuHighlightBrush}"
+                                    BorderBrush="{StaticResource PrimaryColor}"
+                                    BorderThickness="1">
+                                <TextBlock Text="16" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{StaticResource PrimaryColor}"
+                                           FontSize="35"/>
+                            </Border>
+
+                            <Grid Grid.Column="1" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel 
+                                        VerticalAlignment="Center">
+                                    <TextBlock Text="Febuary"
+                                           FontSize="20"
+                                           Foreground="{StaticResource PrimaryColor}"/>
+                                    <TextBlock Text="2024"
+                                           FontSize="16"
+                                           Foreground="{StaticResource PrimaryColor}"
+                                           Opacity="0.5"/>
+                                </StackPanel>
+                                <Button Grid.Column="2" Margin="8 45 8 45">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <iconPacks:FontAwesome Kind="PlusCircleSolid"/>
+                                            <TextBlock Text="New Reminder" Margin="3 0 0 3"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+
+                            <ListView Grid.Row="1" Grid.ColumnSpan="2"
+                                      ItemsSource="{Binding Reminders}"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel HorizontalAlignment="Stretch"></StackPanel>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" >
+                                            <Border CornerRadius="10"
+                                                    BorderThickness="1" 
+                                                    BorderBrush="{StaticResource MenuHighlightBrush}"
+                                                    HorizontalAlignment="Stretch">
+                                                <Grid HorizontalAlignment="Stretch" >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Text="{Binding ReminderTitle}"
+                                                               FontSize="16"
+                                                               Margin="10"/>
+                                                    <Border BorderBrush="{StaticResource BackgroundGrey}" BorderThickness="1" />
+                                                    <TextBlock Grid.Row="1" 
+                                                               Margin="10"
+                                                               Text="{Binding ReminderText}"/>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </Grid>
+                    </Border>
+
+                </Grid>
+
+            </Border>
 
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
+    
 
 </UserControl>

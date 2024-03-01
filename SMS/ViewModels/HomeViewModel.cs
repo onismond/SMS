@@ -10,8 +10,12 @@ using SMS.Model.Responses;
 using SMS.Util;
 using SMS.Util.Commands;
 using SMS.Util.Services;
+using SMS.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace SMS.ViewModels
@@ -109,18 +113,82 @@ namespace SMS.ViewModels
                 }));
         public int Guage3MaxValue => 100;
 
+        // you can convert any array, list or IEnumerable<T> to a pie series collection:
+        public IEnumerable<ISeries> DoughnutSeries { get; set; } =
+            new[] { 2, 4, 1, 4, 3 }.AsPieSeries((value, series) =>
+            {
+                series.InnerRadius = 30;
+            });
+
+
+        private ObservableCollection<ClassObject> todayClasses;
+
+        public ObservableCollection<ClassObject> TodayClasses
+        {
+            get { return todayClasses; }
+            set { todayClasses = value; }
+        }
+
+        private ObservableCollection<Reminder> reminders;
+
+        public ObservableCollection<Reminder> Reminders
+        {
+            get { return reminders; }
+            set { reminders = value; }
+        }
+
+
+
+        public void LoadClasses() {
+            for (int i = 0; i <= 5; i++)
+            {
+                TodayClasses.Add(new ClassObject("Name4", "Location4"));
+            }
+            
+        }
+        
+
         public HomeViewModel(NavigationService<DiscoveryViewModel> discoveryNavigationService, HomeRepository repository)
         {
             _repository = repository;
+            todayClasses = new ObservableCollection<ClassObject>();
+            TodayClasses.Add(new ClassObject("Name1", "Location1"));
+            TodayClasses.Add(new ClassObject("Name2", "Location2"));
+            TodayClasses.Add(new ClassObject("Name3", "Location3"));
+
+            reminders = new ObservableCollection<Reminder>();
+            Reminders.Add(
+                new Reminder { 
+                    ReminderTitle = "First Reminder", 
+                    ReminderText = "This is what I want to do when I wake up tomorrow morning" 
+                });
+
+            Reminders.Add(
+                new Reminder
+                {
+                    ReminderTitle = "Second Reminder",
+                    ReminderText = "This is what I want to do when I wake up tomorrow afternoon"
+                });
+
+            Reminders.Add(
+                new Reminder
+                {
+                    ReminderTitle = "Third Reminder",
+                    ReminderText = "This is what I want to do when I wake up tomorrow evening"
+                });
+
             //DiscoveryCommand = new NavigateCommand<DiscoveryViewModel>(discoveryNavigationService);
             DiscoveryCommand = new RelayCommand(o =>
             {
                 doSomething();
             });
+            LoadClasses();
         }
 
         public async void doSomething()
         {
+            //LoadClasses();
+
             //var student = new Student();
             //student.Name = "Student1";
             //student.Location = "Ucc";

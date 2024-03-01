@@ -147,3 +147,6 @@ C:\Users\Latitude E5470\source\repos\SMS\SMS\bin\Debug\net6.0-windows\runtimes\o
 C:\Users\Latitude E5470\source\repos\SMS\SMS\bin\Debug\net6.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
 C:\Users\Latitude E5470\source\repos\SMS\SMS\bin\Debug\net6.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
 C:\Users\Latitude E5470\source\repos\SMS\SMS\bin\Debug\net6.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
+C:\Users\Latitude E5470\source\repos\SMS\SMS\obj\Debug\net6.0-windows\Theme\PreviousButtonTheme.baml
+C:\Users\Latitude E5470\source\repos\SMS\SMS\obj\Debug\net6.0-windows\Theme\NextButtonTheme.baml
+C:\Users\Latitude E5470\source\repos\SMS\SMS\obj\Debug\net6.0-windows\Theme\PrimaryButtonTheme.baml
